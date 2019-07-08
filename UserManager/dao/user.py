@@ -31,5 +31,13 @@ class UserDAO:
     def create_user(username, password, email):
         User.objects.create(username=username, password=to_md5(password), email=email)
 
-
-
+    @staticmethod
+    def update_user_info(user_id, username, password, email):
+        user = User.objects.get(id=user_id)
+        if username:
+            user.username = username
+        if password:
+            user.password = to_md5(password)
+        if email:
+            user.email = email
+        user.save()

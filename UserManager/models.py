@@ -1,9 +1,8 @@
 import os
+
 from django.db import models
 
 # Create your models here.
-
-
 from webchat.settings import BASE_DIR
 
 headimg_path = os.path.join(BASE_DIR, 'UserManager', 'media', 'headImg')
@@ -11,6 +10,7 @@ default_headimg = os.path.join(headimg_path, 'defaultAvatar.jpg')
 
 
 class User(models.Model):
+    id = models.AutoField()
     username = models.CharField(max_length=64)
     password = models.CharField(max_length=64)
     avatar = models.ImageField(upload_to=headimg_path, default=default_headimg)
@@ -23,16 +23,18 @@ class User(models.Model):
 
 
 class Group(models.Model):
+    id = models.AutoField()
     group_name = models.CharField(max_length=64)
     description = models.CharField(max_length=254)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
     mtime = models.DateTimeField(auto_now_add=True)
     ctime = models.DateTimeField(auto_now=True)
 
 
 class GroupMember(models.Model):
+    id = models.AutoField()
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_admin = models.BooleanField(default=False)
     mtime = models.DateTimeField(auto_now_add=True)
     ctime = models.DateTimeField(auto_now=True)
-
