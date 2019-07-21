@@ -1,7 +1,7 @@
 # Create your views here.
 import json
 
-from UserManager.service.user_service import UserService
+from UserManager.services.user_service import UserService
 from common import exception
 from common.constants import RequestMethod
 from common.decorator import inspect

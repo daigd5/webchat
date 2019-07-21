@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import json
 
-from UserManager.service.group_service import GroupService
+from UserManager.services.group_service import GroupService
 from common import exception
 from common.constants import RequestMethod
 from common.decorator import inspect

@@ -13,6 +13,7 @@ class User(models.Model):
     id = models.AutoField()
     username = models.CharField(max_length=64)
     password = models.CharField(max_length=64)
+    gender = models.SmallIntegerField(default=3)
     avatar = models.ImageField(upload_to=headimg_path, default=default_headimg)
     email = models.EmailField()
     is_admin = models.BooleanField(default=False)
